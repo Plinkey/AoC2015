@@ -77,7 +77,8 @@ def maximize():
     outputs = []
     for amounts in itertools.combinations_with_replacement(list(range(0,101)), len(ingredients)):
         if np.sum(amounts) == 100:
-            curMax = max(curMax, score(amounts))
+            for perm in itertools.permutations(amounts):
+                curMax = max(curMax, score(perm))
     return curMax
     
     
