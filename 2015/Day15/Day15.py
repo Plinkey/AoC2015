@@ -30,6 +30,7 @@ def calcParam(elem, amounts):
     for idx, ing in enumerate(ingredients):
         v = ingredients[ing][elem]
         total += v*amounts[idx]
+        # print(total)
     if total < 0:
         return 0
     else:
@@ -83,6 +84,55 @@ def maximize():
     
     
 # print('The answer to part one is: {}'.format(maximize()))
-# NOTE: 19150560 is too low
-a = maximize()
-print(a)
+# # NOTE: 19150560 is too low
+# a = maximize()
+# print('The answer to part one is: {}'.format(a))
+
+
+# %%
+# Part two
+
+
+def maximize2():
+    curMax = 0
+    outputs = []
+    for amounts in itertools.combinations_with_replacement(list(range(0,101)), len(ingredients)):
+        if np.sum(amounts) == 100:
+            for perm in itertools.permutations(amounts):
+                # print(perm)
+                # print(countCalories(amounts))
+                if calcParam('calories', perm) == 500:
+                    # print('found a cookie amounts: {}'.format(amounts))
+                    curMax = max(curMax, score(perm))
+    return curMax
+    
+
+print('The answer to part two is: {}'.format(maximize2()))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
